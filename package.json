@@ -2,10 +2,14 @@
   "name": "vite-template-solid",
   "version": "0.0.0",
   "description": "",
+  "engines": {
+    "node": "18.17.0"
+  },
   "scripts": {
     "start": "vite",
     "dev": "vite",
     "build": "vite build",
+    "install": "pnpm install",
     "serve": "vite preview"
   },
   "license": "MIT",
