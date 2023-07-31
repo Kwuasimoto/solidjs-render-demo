@@ -8,8 +8,7 @@
   "scripts": {
     "start": "vite",
     "dev": "vite",
-    "build": "vite build",
-    "install": "pnpm install",
+    "build": "pnpm install && vite build",
     "serve": "vite preview"
   },
   "license": "MIT",
