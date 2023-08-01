@@ -12,7 +12,8 @@
     "noEmit": true,
     "isolatedModules": true,
     "paths": {
-      "@components": ["./src/components/index.ts"]
+      "@components": ["./src/components/index.ts"],
+      "@images": ["./src/assets/images/index.ts"]
     }
   },
 }

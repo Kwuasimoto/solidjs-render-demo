@@ -1,11 +1,12 @@
 import type { Component } from 'solid-js';
-import { Header } from "@components";
+import { Header, Footer } from "@components";
 
 const App: Component = () => {
     // Testing automatic commits
   return (
-    <div>
+    <div class="flex flex-col align-between">
       <Header></Header>
+      <Footer></Footer>
     </div>
   );
 };

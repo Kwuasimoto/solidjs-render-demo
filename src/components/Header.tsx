@@ -1,8 +1,9 @@
+import solidLogo from "../assets/images/logo.png"
 
 function Header() {
-    return <header id="main-header">
-        <img src="" alt="SolidJS Logo"/>
-        <h1>SolidJS Basics</h1>
+    return <header id="main-header" class="flex">
+
+        <h1>Basics</h1>
     </header>
 }
 
