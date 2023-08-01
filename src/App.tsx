@@ -4,7 +4,7 @@ import { Header, Footer } from "@components";
 const App: Component = () => {
     // Testing automatic commits
   return (
-    <div class="flex flex-col align-between">
+    <div class="flex flex-col h-full  bg-gray-900">
       <Header></Header>
       <Footer></Footer>
     </div>

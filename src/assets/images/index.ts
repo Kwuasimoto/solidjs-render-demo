@@ -1,3 +1,4 @@
-import solidLogo from "./logo.png"
+import solidLogo from "./solid.svg"
+import tailwindLogo from "./tailwindcss.svg"
 
-export { solidLogo }
+export { solidLogo, tailwindLogo }
