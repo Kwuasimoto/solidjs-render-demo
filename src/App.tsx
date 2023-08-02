@@ -1,13 +1,11 @@
-import type { Component } from 'solid-js';
-import {Show} from "solid-js"
-import {Header, Footer, Debugger} from "@components";
+import type { Component } from "solid-js";
+import { Show } from "solid-js";
+import { Debugger, Footer, Header } from "@components";
 
 const App: Component = () => {
-  const production = import.meta.env.MODE === "production"
-
-    // Testing automatic commits
+  const production = import.meta.env.MODE === "production";
   return (
-    <div class="flex flex-col h-full  bg-gray-900">
+    <div class="flex h-full flex-col bg-gray-900">
       <Header></Header>
       <Footer></Footer>
       <Show when={!production}>
