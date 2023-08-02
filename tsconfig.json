@@ -15,6 +15,6 @@
       "@components": ["./src/components/index.ts"],
       "@images": ["./src/assets/images/index.ts"],
       "@services": ["./src/services/index.ts"]
-    }
+    },
   },
 }

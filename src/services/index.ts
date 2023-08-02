@@ -1,10 +1,12 @@
-import {createStore} from "solid-js/store";
-import {HttpService} from "./http.service";
+import { createStore } from "solid-js/store";
+import { HttpService } from "./http.service";
 
 export interface Services {
-  http: HttpService
+  http: HttpService;
 }
 
-const [] = createStore<Services>({
-  http: new HttpService()
-})
+const [services] = createStore<Services>({
+  http: new HttpService(),
+});
+
+export { services };
