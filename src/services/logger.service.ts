@@ -1,11 +1,11 @@
 import pino, { LogFn } from "pino";
 
 export class Logger {
-  readonly #instance: string;
-  readonly #logger: pino.Logger;
+  private readonly _instance: string;
+  private readonly _logger: pino.Logger;
   constructor(componentName: string) {
-    this.#instance = componentName;
-    this.#logger = pino({
+    this._instance = componentName;
+    this._logger = pino({
       enabled: true,
       browser: {
         asObject: true,
@@ -14,17 +14,17 @@ export class Logger {
   }
 
   readonly info: LogFn = <T>(obj: T, msg?: string, ...args: any[]): void => {
-    this.#logger.info(
+    this._logger.info(
       { obj },
-      `[${this.#instance}] ${msg ? msg : "No Message Set"}`,
+      `[${this._instance}] ${msg ? msg : "No Message Set"}`,
       args,
     );
   };
 
   readonly warn: LogFn = <T>(obj: T, msg?: string, ...args: any[]): void => {
-    this.#logger.warn(
+    this._logger.warn(
       { obj },
-      `[${this.#instance}] ${msg ? msg : "No Message Set"}`,
+      `[${this._instance}] ${msg ? msg : "No Message Set"}`,
       args,
     );
   };

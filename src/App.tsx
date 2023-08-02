@@ -1,6 +1,6 @@
 import type { Component } from "solid-js";
 import { AppContainer, Debugger, Footer, Header } from "@components";
-import { Logger } from "./services/logger.service";
+import { Logger } from "@services";
 
 const logger = new Logger("APP");
 

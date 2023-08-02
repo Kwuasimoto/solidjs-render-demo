@@ -1,9 +1,8 @@
 import { createResource, ResourceReturn } from "solid-js";
-
-const fetchUser = () => fetch("");
+import { createStore } from "solid-js/store";
 
 export class HttpService {
-  readonly #config: RequestInit = {
+  private readonly _config: RequestInit = {
     credentials: "include",
   };
 
@@ -16,13 +15,17 @@ export class HttpService {
 
   readonly get = <T, R>(url: string): ResourceReturn<T, R> => {
     return createResource<T, R>(
-      this.request(url, { ...this.#config, method: "GET" }),
+      this.request(url, { ...this._config, method: "GET" }),
     );
   };
 
   readonly post = <T, R>(url: string, data: BodyInit | null) => {
     return createResource<T, R>(
-      this.request(url, { ...this.#config, method: "POST", body: data }),
+      this.request(url, { ...this._config, method: "POST", body: data }),
     );
   };
 }
+
+const [http, setHttp] = createStore(new HttpService());
+
+export { http };

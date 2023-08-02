@@ -1,14 +1,10 @@
-import { services } from "@services";
+import { env, http } from "@services";
 import { Icon } from "@components";
-import { createSignal } from "solid-js";
-
-const [env, setEnv] = createSignal(import.meta.env.MODE);
 
 export function Debugger() {
-  const [helloWorld, reHelloWorld] = services.http.get<
-    { payload: string },
-    string
-  >("https://render-spring-kotlin-demo.onrender.com/test");
+  const [helloWorld, reHelloWorld] = http.get<{ payload: string }, string>(
+    "https://render-spring-kotlin-demo.onrender.com/test",
+  );
 
   return (
     <div class="border-t border-t-blue-300 text-gray-300">
@@ -32,7 +28,7 @@ export function Debugger() {
       <div class="flex h-48 flex-col bg-gray-950">
         <div class="flex border-b border-b-gray-700">
           <div class="fira-regular p-1 text-sm text-gray-300">
-            Environment: <span class="fira-thin-italic">{env()}</span>
+            Environment: <span class="fira-thin-italic">{env.mode()}</span>
           </div>
         </div>
         <div class="flex flex-grow">
