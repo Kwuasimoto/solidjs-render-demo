@@ -23,6 +23,9 @@ dependencies:
   pino:
     specifier: ^8.14.2
     version: 8.14.2
+  prettier-plugin-tailwindcss:
+    specifier: ^0.4.1
+    version: 0.4.1(prettier@3.0.0)
   solid-js:
     specifier: ^1.7.6
     version: 1.7.6
@@ -49,9 +52,6 @@ devDependencies:
   prettier:
     specifier: 3.0.0
     version: 3.0.0
-  prettier-plugin-tailwindcss:
-    specifier: ^0.4.1
-    version: 0.4.1(prettier@3.0.0)
   solid-devtools:
     specifier: ^0.27.3
     version: 0.27.3(solid-js@1.7.6)(vite@4.3.9)
@@ -1563,13 +1563,12 @@ packages:
         optional: true
     dependencies:
       prettier: 3.0.0
-    dev: true
+    dev: false
 
   /prettier@3.0.0:
     resolution: {integrity: sha512-zBf5eHpwHOGPC47h0zrPyNn+eAEIdEzfywMoYn2XPi0P44Zp0tSq64rq0xAREh4auw2cJZHo9QUob+NqCQky4g==}
     engines: {node: '>=14'}
     hasBin: true
-    dev: true
 
   /process-warning@2.2.0:
     resolution: {integrity: sha512-/1WZ8+VQjR6avWOgHeEPd7SDQmFQ1B5mC1eRXsCm5TarlNmx/wCsa5GEaxGm05BORRtyG/Ex/3xq3TuRvq57qg==}
