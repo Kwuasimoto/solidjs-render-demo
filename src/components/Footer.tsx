@@ -1,8 +1,8 @@
 import { solidLogo, tailwindLogo } from "@images";
 
-function Footer() {
+export function Footer() {
   return (
-    <footer class="mb-2 mr-5 mt-auto flex items-center justify-end">
+    <footer class="mb-2 mr-5 mt-auto flex items-center justify-end text-gray-300">
       <div class="fira-bold-italic mr-3">Powered By</div>
       <img src={solidLogo} alt="SolidJS Logo" class="h-8" />
       <div class="fira-bold mx-3"> & </div>
@@ -10,5 +10,3 @@ function Footer() {
     </footer>
   );
 }
-
-export { Footer };

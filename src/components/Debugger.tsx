@@ -1,21 +1,32 @@
+import { services } from "@services";
 import { Icon } from "@components";
 
-function Debugger() {
+export function Debugger() {
+  const [helloWorld, reHelloWorld] = services.http.get<
+    { payload: string },
+    string
+  >("http://localhost:8080/test");
+
   return (
-    <div class="h-48 border-t border-t-blue-300">
+    <div class="border-t border-t-blue-300 text-gray-300">
       <div class="flex border-b border-b-blue-300 bg-gray-800">
         <div class="fira-thin-italic p-1 text-sm">SolidJS Debugger</div>
         <span class="ml-auto mr-1 flex">
           <div class="fira-thin p-1 text-sm">Connected: </div>
           <Icon
-            containerClass="pt-1"
+            containerClass={
+              "pt-1 " +
+              (helloWorld.state === "pending"
+                ? "text-gray-300"
+                : helloWorld.state === "errored"
+                ? "text-red-500"
+                : "text-green-500")
+            }
             iconifyProps={{ icon: "mdi:rss", height: 18 }}
           ></Icon>
         </span>
       </div>
-      <div class="h-full bg-gray-950"></div>
+      <div class="h-48 bg-gray-950"></div>
     </div>
   );
 }
-
-export { Debugger };

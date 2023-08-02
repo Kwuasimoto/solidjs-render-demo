@@ -1,13 +1,6 @@
-// @ts-nocheck
+import { IconProps } from "@types";
 
-import { IconifyIconProps } from "@iconify/react";
-
-export interface IconProps {
-  containerClass: string;
-  iconifyProps: IconifyIconProps;
-}
-
-function Icon(props: IconProps) {
+export function Icon(props: IconProps) {
   return (
     <div class={props.containerClass}>
       <iconify-icon
@@ -17,5 +10,3 @@ function Icon(props: IconProps) {
     </div>
   );
 }
-
-export { Icon };

@@ -1,1 +1,1 @@
-export * from "./instrinsics";
+export * from "./props";

@@ -4,12 +4,8 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body, #root {
+html, body {
   height: 100vh
-}
-
-* {
-  color: lightgray;
 }
 
 body {
