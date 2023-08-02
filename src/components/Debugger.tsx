@@ -1,5 +1,8 @@
 import { services } from "@services";
 import { Icon } from "@components";
+import { createSignal } from "solid-js";
+
+const [env, setEnv] = createSignal(import.meta.env.MODE);
 
 export function Debugger() {
   const [helloWorld, reHelloWorld] = services.http.get<
@@ -26,7 +29,18 @@ export function Debugger() {
           ></Icon>
         </span>
       </div>
-      <div class="h-48 bg-gray-950"></div>
+      <div class="flex h-48 flex-col bg-gray-950">
+        <div class="flex border-b border-b-gray-700">
+          <div class="fira-regular p-1 text-sm text-gray-300">
+            Environment: <span class="fira-thin-italic">{env()}</span>
+          </div>
+        </div>
+        <div class="flex flex-grow">
+          <div class="flex-grow border-r border-r-gray-700"></div>
+          <div class="flex-grow border-r border-r-gray-700"></div>
+          <div class="flex-grow border-r border-r-gray-700"></div>
+        </div>
+      </div>
     </div>
   );
 }
