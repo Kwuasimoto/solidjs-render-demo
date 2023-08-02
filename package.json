@@ -6,7 +6,7 @@
     "node": "18.17.0"
   },
   "scripts": {
-    "start": "vite --host=0.0.0.0",
+    "start": "vite --host=0.0.0.0 --mode=production",
     "dev": "vite",
     "build": "pnpm install && vite build",
     "serve": "vite preview"
@@ -16,7 +16,6 @@
     "@types/node": "^20.4.5",
     "postcss": "^8.4.27",
     "prettier": "3.0.0",
-
     "solid-devtools": "^0.27.3",
     "typescript": "^5.1.3"
   },
