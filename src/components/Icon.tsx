@@ -1,6 +1,7 @@
 import { IconProps } from "@types";
+import { Component } from "solid-js";
 
-export function Icon(props: IconProps) {
+export const Icon: Component<IconProps> = (props) => {
   return (
     <div class={props.containerClass}>
       <iconify-icon
@@ -9,4 +10,4 @@ export function Icon(props: IconProps) {
       ></iconify-icon>
     </div>
   );
-}
+};

@@ -1,6 +1,6 @@
 import { solidLogo, tailwindLogo } from "@images";
 
-export function Footer() {
+export const Footer = () => {
   return (
     <footer class="mb-2 mr-5 mt-auto flex items-center justify-end text-gray-300">
       <div class="fira-bold-italic mr-3">Powered By</div>
@@ -9,4 +9,4 @@ export function Footer() {
       <img src={tailwindLogo} alt="Tailwind Logo" class="h-7" />
     </footer>
   );
-}
+};

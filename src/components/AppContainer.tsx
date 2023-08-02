@@ -1,3 +1,3 @@
-export function AppContainer() {
+export const AppContainer = () => {
   return <div> </div>;
 }
