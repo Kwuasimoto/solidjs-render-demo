@@ -5,7 +5,7 @@ export function Debugger() {
   const [helloWorld, reHelloWorld] = services.http.get<
     { payload: string },
     string
-  >("http://localhost:8080/test");
+  >("https://render-spring-kotlin-demo.onrender.com/test");
 
   return (
     <div class="border-t border-t-blue-300 text-gray-300">
