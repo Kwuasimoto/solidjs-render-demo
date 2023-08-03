@@ -39,16 +39,12 @@ export const Debugger: Component = () => {
         </div>
         <div class="flex flex-grow">
           <div class="fira-regular max-h-[164px] w-1/3 overflow-y-auto border-r border-r-gray-700 px-1 pt-0.5 text-xs">
-            <div>Requests & Responses</div>
             <DebuggerLog />
           </div>
-          <div class="fira-regular max-h-40 w-1/3 border-r border-r-gray-700 px-1 pt-0.5 text-xs">
-            <div>Make Request</div>
+          <div class="fira-regular max-h-[164px] w-1/3 border-r border-r-gray-700 px-1 pt-0.5 text-xs">
             <DebuggerInput />
           </div>
-          <div class="fira-regular max-h-36 w-1/3 overflow-y-auto border-r border-r-gray-700 px-1 pt-0.5 text-xs">
-            <div>Response</div>
-          </div>
+          <div class="fira-regular max-h-[164px] w-1/3 overflow-y-auto border-r border-r-gray-700 px-1 pt-0.5 text-xs"></div>
         </div>
       </div>
     </div>

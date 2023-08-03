@@ -1,27 +1,62 @@
 /**
  * Written w/ codemirror v6
  */
-import { EditorState } from "@codemirror/state";
 import { basicSetup, EditorView } from "codemirror";
-import { javascript } from "@codemirror/lang-javascript";
-import { keymap } from "@codemirror/view";
+import { EditorState } from "@codemirror/state";
 import { defaultKeymap } from "@codemirror/commands";
-import { Component } from "solid-js";
+import {
+  highlightActiveLine,
+  highlightSpecialChars,
+  keymap,
+} from "@codemirror/view";
+import {
+  bracketMatching,
+  defaultHighlightStyle,
+  syntaxHighlighting,
+} from "@codemirror/language";
+import { javascript } from "@codemirror/lang-javascript";
+import { Component, createEffect, createSignal } from "solid-js";
+import { Logger } from "@services";
+import { CodeMirrorProps } from "@types";
 
-let startState = EditorState.create({
-  doc: "Hello World",
-  extensions: [keymap.of(defaultKeymap)],
-});
+export const DebuggerEditor: Component<CodeMirrorProps> = (props) => {
+  const logger = new Logger("DebuggerEditor");
+  const [editorEl, setEditorEl] = createSignal<HTMLElement | null>(null);
 
-let view = new EditorView({
-  state: startState,
-  extensions: [basicSetup, javascript()],
-  parent: document.body,
-});
+  createEffect(() => {
+    if (editorEl() == null) return;
 
-export const DebuggerEditor: Component = () => {
+    const extensions = [
+      basicSetup,
+      keymap.of(defaultKeymap),
+      syntaxHighlighting(defaultHighlightStyle),
+      props.onChange,
+      javascript(),
+      highlightSpecialChars(),
+      highlightActiveLine(),
+      bracketMatching(),
+    ];
+
+    const startState = EditorState.create({
+      doc: "// Enter Request Body Here.",
+      extensions,
+    });
+
+    const view = new EditorView({
+      extensions,
+      state: startState,
+      parent: editorEl()!,
+    });
+
+    return () => {
+      view.destroy();
+    };
+  });
 
   return (
-    <></>
-  )
-}
+    <section
+      class="max-h-[164px] pt-1 text-gray-300"
+      ref={setEditorEl}
+    ></section>
+  );
+};

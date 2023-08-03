@@ -1,31 +1,53 @@
-import { http } from "@services";
-import { Component, createSignal, For } from "solid-js";
+import { http, Logger } from "@services";
+import { Component, createSignal, For, Show } from "solid-js";
+import { DebuggerEditor } from "./DebuggerEditor";
+import { EditorView } from "codemirror";
+
+const [codeMirrorInput, setCodeMirrorInput] = createSignal<string>();
+
+// Shout out to ChatGPT for this one.
+// Clean up the JSON string by removing extra commas
+function cleanUpJSONString(jsonString: string) {
+  // Replace multiple commas with a single comma
+  const cleanedJSON = jsonString.replace(/,+/g, ",");
+  // Remove trailing commas after opening curly braces or before closing curly braces
+  return cleanedJSON.replace(/,\s*}/g, "}").replace(/{\s*,/g, "{");
+}
+
+const handleCodeMirrorInput = () =>
+  EditorView.updateListener.of((update) => {
+    if (update.docChanged) {
+      const cleanedJSON = cleanUpJSONString(update.state.doc.toJSON().join());
+      setCodeMirrorInput(cleanedJSON.replace(" ", ""));
+    }
+  });
 
 export const DebuggerInput: Component = () => {
-  const [isPost, setIsPost] = createSignal("GET");
+  const logger = new Logger("DebuggerInput");
+  const [method, setMethod] = createSignal("GET");
 
   return (
     <div class="flex flex-col">
-      <div class="flex">
+      <div class="fira-regular flex pt-0.5">
         <div>Methods</div>
-        <div class="ml-auto flex px-1">
+        <div class="ml-auto flex">
           <button
-            onClick={() => setIsPost("GET")}
-            class="ml-2 rounded-md bg-green-700 px-1"
+            onClick={() => setMethod("GET")}
+            class="ml-2 rounded-sm bg-green-700 px-1"
           >
             GET
           </button>
           <button
-            onClick={() => setIsPost("POST")}
-            class="ml-2 rounded-md bg-blue-700 px-1"
+            onClick={() => setMethod("POST")}
+            class="ml-2 rounded-sm bg-blue-700 px-1"
           >
             POST
           </button>
         </div>
       </div>
       <div class="flex pt-1">
-        <span>Endpoint:</span>
-        <select class="ml-auto mr-1 rounded-md bg-gray-900 px-1">
+        <span class="pt-0.5">Endpoint:</span>
+        <select class="ml-1 rounded-sm bg-gray-900 px-1 py-0.5">
           <For each={http.endpoints}>
             {(endpoint) => (
               <option class="bg-gray-900" value={endpoint}>
@@ -34,8 +56,20 @@ export const DebuggerInput: Component = () => {
             )}
           </For>
         </select>
+        <button
+          onclick={() => {
+            logger.info(codeMirrorInput(), "Code mirror input");
+          }}
+          class="ml-auto rounded-sm bg-red-700 px-4"
+        >
+          run
+        </button>
       </div>
-      <input type="field" />
+      <div class="max-h-[124px] overflow-y-auto">
+        <Show when={method() === "POST"}>
+          <DebuggerEditor onChange={handleCodeMirrorInput()} />
+        </Show>
+      </div>
     </div>
   );
-}
+};
